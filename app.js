@@ -42,14 +42,14 @@ const database = {
   }
 }
 
-// Create a Discord instance with Eris module
+// Discord instance with Eris module
 let bot = new Eris.CommandClient(database.bot.token, {}, {
   description: "...",
   owner: "...",
   prefix: "!"
 })
 
-// Get a username id (twitch)
+// Get a Twitch id by username
 const getUserId = async function () {
   let name = 'here_username_twitch'
   try {
@@ -64,14 +64,14 @@ const getUserId = async function () {
 
     if (response.ok) {
       let data = await response.json()
-      console.log(data.data[0].id)
+      console.log(data.data[0].id) // id here
     }
   } catch (e) {
     console.log(e)
   }
 }
 
-// Get a channel info
+// Get a Twitch channel info
 const getStreams = async function (id, cpt) {
   try {
     let response = await fetch(`https://api.twitch.tv/helix/streams?user_id=${id}`, {
