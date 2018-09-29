@@ -1,0 +1,16 @@
+{
+  "name": "bot_team_pls",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "node app.js"
+  },
+  "author": "zaekof",
+  "license": "ISC",
+  "dependencies": {
+    "eris": "^0.9.0",
+    "node-fetch": "^2.2.0",
+    "twit": "^2.2.11"
+  }
+}
