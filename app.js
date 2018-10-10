@@ -92,7 +92,8 @@ const getStreams = async function (id, cpt) {
         let pseudo_twitch = database.twitch.users[cpt].pseudo
         let pseudo_twitter = database.twitch.users[cpt].twitter
 
-        let discord_str = `Hey! ${pseudo_twitch} est en live (${titre_stream}) 👉  https://www.twitch.tv/${pseudo_twitch}.`
+        let twitch_link = ` https://www.twitch.tv/${pseudo_twitch}`
+        let discord_str = `Hey! ${pseudo_twitch} est en live (${titre_stream}) 👉 `
         let twitter_str = `Hey! @${pseudo_twitter} est en live (${titre_stream}) 👉  https://www.twitch.tv/${pseudo_twitch}.`
 
         T.post('statuses/update', { status: twitter_str }, (err, data, response) => {
@@ -101,10 +102,11 @@ const getStreams = async function (id, cpt) {
 
         // Markdown check
         if (discord_str.search("_") !== -1) {
-          discord_str = discord_str.replace("_", "\\\_")
-        }
-        else if (discord_str.search("__") !== -1) {
-          discord_str = discord_str.replace("__", "\\\__")
+          discord_str = discord_str.replace(/_/g, "\\\_")
+          discord_str = discord_str.concat(" ", twitch_link)
+        } else if (discord_str.search("__") !== -1) {
+          discord_str = discord_str.replace(/__/g, "\\\__")
+          discord_str = discord_str.concat(" ", twitch_link)
         }
 
         ft_send(discord_str)
