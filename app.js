@@ -103,11 +103,10 @@ const getStreams = async function (id, cpt) {
         // Markdown check
         if (discord_str.search("_") !== -1) {
           discord_str = discord_str.replace(/_/g, "\\\_")
-          discord_str = discord_str.concat(" ", twitch_link)
         } else if (discord_str.search("__") !== -1) {
           discord_str = discord_str.replace(/__/g, "\\\__")
-          discord_str = discord_str.concat(" ", twitch_link)
         }
+        discord_str = discord_str.concat(" ", twitch_link)
 
         ft_send(discord_str)
 
